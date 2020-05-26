@@ -1,0 +1,37 @@
+def printMatrix(Matrix, nrLinii, nrCol) :  
+    '''
+    printing the matrix in an acceptable design and format
+    
+    '''        
+    for i in range(nrLinii) :  
+        for j in range(nrCol) :  
+            print("%6.1i" %Matrix[i][j], end = " ") 
+  
+        print() 
+
+#i = linii, j = coloane
+dim = int(input("Which is the square matrix size: "))
+el_1 = int(input("Which is the value of the first position (a[0][0]): "))
+pas = int(input("Which is the step of the arithmetical progression: "))
+matrix = []
+for i in range(0,dim):
+    matrix = matrix + [i]
+    matrix[i] = []
+    for j in range(0,dim):
+        if j in range(0,i+1):
+            if i == j == 0:
+                matrix[i] = matrix[i] + [el_1]
+            elif i >= 1 and j == 0:
+                matrix[i] = matrix[i] + [matrix[i-1][0]+pas*i]
+            else:
+                matrix[i] = matrix[i] + [matrix[i][j-1]+pas]
+        else:
+            matrix[i] = matrix[i] + [0]
+
+print("Matrix as a list of lists: \n")
+print(matrix)
+print("\nMatrix as a pile of lists: \n")
+for i in range(dim):
+    print(matrix[i])
+print("\nMatrix in a standard representation: \n")    
+printMatrix(matrix, dim, dim)
